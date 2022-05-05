@@ -1,0 +1,26 @@
+{
+  "name": "restaurant-app-backend",
+  "version": "1.0.0",
+  "description": "restaurant backend data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UnpredictablePrashant/LearnNodeJs.git"
+  },
+  "author": "prashant",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UnpredictablePrashant/LearnNodeJs/issues"
+  },
+  "homepage": "https://github.com/UnpredictablePrashant/LearnNodeJs#readme",
+  "dependencies": {
+    "express": "^4.18.0",
+    "got": "^11.8.3",
+    "node-fetch": "^2.6.7",
+    "nodemon": "^2.0.15",
+    "request": "^2.88.2"
+  }
+}

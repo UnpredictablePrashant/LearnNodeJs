@@ -1,0 +1,45 @@
+<html>
+
+<head>
+    <title>File Uploader</title>
+</head>
+
+<body>
+    
+    <h1>File List</h1>
+    <div id="fname"></div>
+    <div><a href="/">Upload File</a></div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+        const parentDiv = document.querySelector(".admin");
+        window.addEventListener("load", async () => {
+            try {
+                let result = await axios({
+                    method: "GET",
+                    url: "/filelist",
+                });
+                let files = result.data;
+                console.log(result.data)
+
+                files.forEach((file) => {
+                    console.log(file.fileName)
+                    markup = `
+                        <div>
+                            <span>Date: ${file.createdAt} ---- File Name: </span>
+                          <a href="/fetchFile/${file.fileName}"><span> ${file.fileName}</span></a>
+                        </div>
+                      `;
+                    //   el = document.getElementById("fname")
+                      document.getElementById("fname").insertAdjacentHTML('beforeend', markup);
+
+                    // parentDiv.insertAdjacentHTML("beforeend", markup);
+                });
+            } catch (error) {
+                console.log(error);
+            }
+        });
+    </script>
+</body>
+
+</html>

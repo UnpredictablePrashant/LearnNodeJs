@@ -10,8 +10,8 @@ server.listen(4000, () => {
     console.log('Server Started..');
 });
 
-app.get('/chat', (req,res)=>{
-    res.sendFile(__dirname+'/public/index.html')
+app.get('/', (req,res)=>{
+    res.sendFile(__dirname+'/index.html')
 })
 
 

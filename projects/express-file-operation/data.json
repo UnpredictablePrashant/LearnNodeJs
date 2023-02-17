@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Prashant",
+        "email": "prashant.dey@herovired.com",
+        "company": "HeroVired"
+    },
+    {
+        "name": "Nitin",
+        "age": 23,
+        "company": "HV"
+    },
+    {
+        "name": "Shashank",
+        "age": 25,
+        "company": "SH"
+    }
+]

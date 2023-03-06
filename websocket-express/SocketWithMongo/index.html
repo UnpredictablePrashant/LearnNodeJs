@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Real-time data</title>
+  </head>
+  <body>
+    <h1>Real-time data</h1>
+    <ul id="data"></ul>
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+    <script>
+      var socket = io();
+      socket.on('newData', function(data) {
+        var li = document.createElement('li');
+        li.textContent = JSON.stringify(data);
+        document.getElementById('data').appendChild(li);
+      });
+      socket.on('allData', (data)=>{
+        var li = document.createElement('li');
+        li.textContent = JSON.stringify(data);
+        document.getElementById('data').appendChild(li);
+      })
+    </script>
+  </body>
+</html>

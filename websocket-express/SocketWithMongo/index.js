@@ -4,9 +4,10 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const mongoose = require('mongoose');
 app.use(express.json())
+require('dotenv').config()
 
 // Connect to MongoDB using Mongoose
-mongoose.connect('mongodb://localhost:27017/socketdb');
+mongoose.connect(process.env.MONGO_URI);
 
 
 // Define a schema for the data
@@ -25,17 +26,17 @@ io.on('connection', function (socket) {
   Data.find({}).then(
     data => socket.emit('allData', data)
   ).catch(err => console.log(err))
-  // let inserts = Data.watch([{ $match: { operationType: 'insert' } }]);
-  // inserts.on('change', async function(data) {
-  //   console.log(data)
-  //   let name = data.fullDocument.name;
-  //   if (name === 'time to go.') {
-  //     console.log('ok I\'m leaving.');
-  //     return inserts.driverChangeStream.close();
-  //   } else {
-  //     console.log(name);
-  //   }
-  // });
+  let inserts = Data.watch([{ $match: { operationType: 'insert' } }]);
+  inserts.on('change', async function(data) {
+    console.log(data)
+    let name = data.fullDocument.name;
+    if (name === 'time to go.') {
+      console.log('ok I\'m leaving.');
+      return inserts.driverChangeStream.close();
+    } else {
+      console.log(name);
+    }
+  });
 
 
   // Watch for changes in the MongoDB collection
@@ -90,7 +91,6 @@ app.post('/adddata', (req, res) => {
   }).catch((err) => {
     res.send("ERR")
   })
-  Data.watch(pipeline).on('change', data => console.log('inside the add',data))
 
 })
 
